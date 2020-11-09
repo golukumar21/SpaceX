@@ -1,0 +1,100 @@
+<!-- Toolbar -->
+<div class="header" role="banner">
+  <svg id="rocket" alt="Rocket Ship" xmlns="http://www.w3.org/2000/svg" width="101.678" height="101.678"
+    viewBox="0 0 101.678 101.678">
+    <g id="Group_83" data-name="Group 83" transform="translate(-141 -696)">
+      <circle id="Ellipse_8" data-name="Ellipse 8" cx="50.839" cy="50.839" r="50.839" transform="translate(141 696)"
+        fill="#dd0031" />
+      <g id="Group_47" data-name="Group 47" transform="translate(165.185 720.185)">
+        <path id="Path_33" data-name="Path 33"
+          d="M3.4,42.615a3.084,3.084,0,0,0,3.553,3.553,21.419,21.419,0,0,0,12.215-6.107L9.511,30.4A21.419,21.419,0,0,0,3.4,42.615Z"
+          transform="translate(0.371 3.363)" fill="#fff" />
+        <path id="Path_34" data-name="Path 34"
+          d="M53.3,3.221A3.09,3.09,0,0,0,50.081,0,48.227,48.227,0,0,0,18.322,13.437c-6-1.666-14.991-1.221-18.322,7.218A33.892,33.892,0,0,1,9.439,25.1l-.333.666a3.013,3.013,0,0,0,.555,3.553L23.985,43.641a2.9,2.9,0,0,0,3.553.555l.666-.333A33.892,33.892,0,0,1,32.647,53.3c8.55-3.664,8.884-12.326,7.218-18.322A48.227,48.227,0,0,0,53.3,3.221ZM34.424,9.772a6.439,6.439,0,1,1,9.106,9.106,6.368,6.368,0,0,1-9.106,0A6.467,6.467,0,0,1,34.424,9.772Z"
+          transform="translate(0 0.005)" fill="#fff" />
+      </g>
+    </g>
+  </svg>
+  <h4>SpaceX Launch Programs</h4>
+</div>
+
+<div class="content container-fluid" role="main">
+  <div class="row main spaceX_programs">
+    <div class="col-xl-2 filter_cont">
+      <h5>Filters</h5>
+      <div class="spaceX_filter">
+        <label>Launch Year</label>
+        <hr class="line" />
+        <div class="items">
+          <div class="years item_main">
+            <div *ngFor="let y of years; let i = index;" class="launch_year item_opt">
+              <span (click)="applyYearFilter(y.year, i)" [class.active]="selectedIndex === i">{{y.year}}</span>
+            </div>
+          </div>
+        </div>
+        <label>Successful Launch</label>
+        <hr class="line" />
+        <div class="items">
+          <div class="launch item_main">
+            <div class="item_opt">
+              <span (click)="launch(true)" [ngClass]="{'active': toggleLaunch}">True</span>
+            </div>
+            <div class="item_opt">
+              <span (click)="launch(false)" [ngClass]="{'active': !toggleLaunch}">False</span>
+            </div>
+          </div>
+        </div>
+        <label>Successful Landing</label>
+        <hr class="line" />
+        <div class="items">
+          <div class="landing item_main">
+            <div class="item_opt">
+              <span (click)="landing(true)" [ngClass]="{'active': toggleLanding}">True</span>
+            </div>
+            <div class="item_opt">
+              <span (click)="landing(false)" [ngClass]="{'active': !toggleLanding}">False</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-10 program_container">
+      <h3 class="not_found" *ngIf="data?.length === 0">Oops... No Launch Programs found!</h3>
+      <div class="row program_main" *ngIf="data?.length > 0">
+        <div *ngFor="let d of data; let i = index;" class="program col-xl-3 col-lg-3 col-md-6 col-sm-12">
+          <div class="program_inner">
+            <div class="program_img img">
+              <img src="{{d.links.mission_patch_small}}" alt="Program Image">
+            </div>
+            <p class="mission_name">{{d.mission_name}} #{{d.flight_number}}</p>
+            <div class="mission_ids" *ngIf="d.mission_id?.length > 0">
+              <label>Mission Ids:</label>
+              <ul>
+                <li *ngFor="let m of d.mission_id">{{m}}</li>
+              </ul>
+            </div>
+            <div class="launch_y">
+              <label>Launch Year:</label>
+              <span>{{d.launch_year}}</span>
+            </div>
+            <div class="launch_status">
+              <label>Successful Launch:</label>
+              <span>{{d.launch_success}}</span>
+            </div>
+            <div class="launding_status" *ngIf="d.rocket.first_stage.cores[0].land_success !== null">
+              <label>Successful Landing:</label>
+              <span>{{d.rocket.first_stage.cores[0].land_success}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer" *ngIf="data?.length > 0">
+    <h3>Developed By: Kumar Abhishek</h3>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(51,51,51,0.9)" size="medium" color="#0071c5" type="timer" [fullScreen]="true">
+  <p style="color: #0071c5; font-size: 16px;font-weight: 600;"> Loading... </p>
+</ngx-spinner>

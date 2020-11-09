@@ -1,0 +1,124 @@
+.header {
+	display: flex;
+	align-items: center;
+	background-color: #1976d2;
+	color: white;
+	font-weight: 600;
+	img {
+		margin: 0 16px;
+	}
+	#rocket {
+        width: 40px;
+        margin: 10px;
+        height: 40px;
+	}
+	h4 {
+		margin: 0;
+	}
+}
+
+.content {
+    height: calc(100vh - 7vh);
+    .spaceX_programs {
+		padding: 10px;
+        .filter_cont {
+			max-height: 655px;
+			background-color: #ffffff;
+			border-radius: 5px;
+			padding: 15px 10px;
+			h5 {
+				margin: 0;
+				font-weight: 600;
+			}
+			.spaceX_filter {
+				label {
+					text-align: center;
+					width: 100%;
+				}
+				hr.line {
+					margin: 0px auto 10px;
+					width: 55%;
+					background-color: #d6d6d6;
+				}
+				.items {
+					margin-bottom: 15px;	
+					.item_main {
+						display: flex;
+						text-align: center;
+						flex-wrap: wrap;
+						.item_opt {
+							flex: 0 50%;
+							box-sizing: border-box;
+							margin: 10px 0px;
+							span {
+								padding: 10px;
+								background-color: #ceff8d;
+								border-radius: 5px;
+								font-weight: bold;
+								cursor: pointer;
+								&.active {
+									background-color: #72c503;
+								}
+							}
+						}
+					}
+				}
+			}
+        }
+	}
+	.program_container {
+		.not_found {
+			text-align: center;
+		}
+		.program_main {
+			.program {
+				.program_inner {
+					background-color: #ffffff;
+					border-radius: 5px;
+					margin: 0px 5px 15px;
+					padding: 20px 25px;
+					min-height: 500px;
+					.program_img {
+						text-align: center;
+						margin-bottom: 15px;
+						background-color: #f3f3f3;
+						img {
+							width: 250px;
+						}
+					}
+					.mission_name{
+						font-weight: bolder;
+						color: #0041b9;
+					}
+					label {
+						font-weight: 600;
+						margin-right: 5px;
+					}
+					.mission_ids {
+						ul {
+							margin-left: 35px;
+						}
+					}
+					span {
+						color: #0041b9;
+					}
+				}
+			}
+		}
+	}
+	.footer {
+		text-align: center;
+	}
+}
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {  }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {  }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {  }
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {  }
