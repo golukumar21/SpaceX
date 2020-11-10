@@ -8,8 +8,24 @@ import { GeneralService } from './general.service';
 })
 export class AppComponent {
   title = 'spaceX';
-  toggleLanding: boolean = true;
-  toggleLaunch: boolean = true;
+  toggleLanding: any = [
+    {
+      'flag': true
+    },
+    {
+      'flag': false
+    }
+  ];
+  toggleLaunch: any = [
+    {
+      'flag': true
+    },
+    {
+      'flag': false
+    }
+  ];
+  selectedLaunch: number = null;
+  selectedLanding: number = null;
   selectedIndex: number = null;
   launchFlag: boolean = true;
   landFlag: boolean = true;
@@ -97,10 +113,11 @@ export class AppComponent {
   /**
    * @method launch when Successful Launch is selected as true/false
    * @param arg Successful Launch true/false
+   * @param index current selected index
    */
-  launch(arg) {
-    this.toggleLaunch = !this.toggleLaunch;
+  launch(arg, index) {
     this.launchFlag = arg;
+    this.selectedLaunch = index;
     if (this.yearApplied) {
       this.gs.allFilter(this.landFlag, this.launchFlag, this.yearLaunch).subscribe(res => {
         this.yearApplied = true;
@@ -118,10 +135,11 @@ export class AppComponent {
   /**
    * @method landing when Successful Landing is selected as true/false
    * @param arg Successful Landing true/false
+   *  @param index current selected index
    */
-  landing(arg) {
-    this.toggleLanding = !this.toggleLanding;
+  landing(arg, index) {
     this.landFlag = arg;
+    this.selectedLanding = index;
     if (this.yearApplied) {
       this.gs.allFilter(this.landFlag, this.launchFlag, this.yearLaunch).subscribe(res => {
         this.yearApplied = true;

@@ -35,11 +35,8 @@
         <hr class="line" />
         <div class="items">
           <div class="launch item_main">
-            <div class="item_opt">
-              <span (click)="launch(true)" [ngClass]="{'active': toggleLaunch}">True</span>
-            </div>
-            <div class="item_opt">
-              <span (click)="launch(false)" [ngClass]="{'active': !toggleLaunch}">False</span>
+            <div class="item_opt" *ngFor="let l of toggleLanding; let i = index;">
+              <span (click)="launch(l.flag, i)" [class.active]="selectedLaunch === i">{{l.flag}}</span>
             </div>
           </div>
         </div>
@@ -47,11 +44,8 @@
         <hr class="line" />
         <div class="items">
           <div class="landing item_main">
-            <div class="item_opt">
-              <span (click)="landing(true)" [ngClass]="{'active': toggleLanding}">True</span>
-            </div>
-            <div class="item_opt">
-              <span (click)="landing(false)" [ngClass]="{'active': !toggleLanding}">False</span>
+            <div class="item_opt" *ngFor="let l of toggleLaunch; let i = index;">
+              <span (click)="landing(l.flag, i)" [class.active]="selectedLanding === i">{{l.flag}}</span>
             </div>
           </div>
         </div>
