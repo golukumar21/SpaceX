@@ -13,7 +13,7 @@ export class AppComponent {
   selectedIndex: number = null;
   launchFlag: boolean = true;
   landFlag: boolean = true;
-  yearLaunch: any;
+  yearLaunch: any = null;
   years: any = [
     {
       'year': 2006
@@ -62,6 +62,7 @@ export class AppComponent {
     }
   ]
   data: any = [];
+  yearApplied: boolean = false;
 
   constructor(private gs: GeneralService) { }
 
@@ -87,6 +88,7 @@ export class AppComponent {
     this.selectedIndex = index;
     this.yearLaunch = year;
     this.gs.allFilter(this.landFlag, this.launchFlag, year).subscribe(res => {
+      this.yearApplied = true;
       this.data = [];
       this.data = res;
     });
@@ -99,10 +101,18 @@ export class AppComponent {
   launch(arg) {
     this.toggleLaunch = !this.toggleLaunch;
     this.launchFlag = arg;
-    this.gs.launchSuccessFilter(this.launchFlag).subscribe(res => {
-      this.data = [];
-      this.data = res;
-    });
+    if (this.yearApplied) {
+      this.gs.allFilter(this.landFlag, this.launchFlag, this.yearLaunch).subscribe(res => {
+        this.yearApplied = true;
+        this.data = [];
+        this.data = res;
+      });
+    } else {
+      this.gs.landAndLaunch(this.launchFlag, this.landFlag).subscribe(res => {
+        this.data = [];
+        this.data = res;
+      });
+    }
   }
 
   /**
@@ -112,9 +122,17 @@ export class AppComponent {
   landing(arg) {
     this.toggleLanding = !this.toggleLanding;
     this.landFlag = arg;
-    this.gs.landFilter(this.landFlag).subscribe(res => {
-      this.data = [];
-      this.data = res;
-    });
+    if (this.yearApplied) {
+      this.gs.allFilter(this.landFlag, this.launchFlag, this.yearLaunch).subscribe(res => {
+        this.yearApplied = true;
+        this.data = [];
+        this.data = res;
+      });
+    } else {
+      this.gs.landAndLaunch(this.launchFlag, this.landFlag).subscribe(res => {
+        this.data = [];
+        this.data = res;
+      });
+    }
   }
 }

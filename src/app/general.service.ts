@@ -19,14 +19,18 @@ export class GeneralService {
     }
 
     public launchSuccessFilter(launchFlag): Observable<any> {
-        return this.http.get(this.apiURL + '&launch_success='+ launchFlag, this.options);
+        return this.http.get(this.apiURL + '&launch_success=' + launchFlag, this.options);
     }
 
     public landFilter(landFlag): Observable<any> {
         return this.http.get(this.apiURL + '&land_success=' + landFlag, this.options);
     }
 
+    public landAndLaunch(launchFlag, landFlag): Observable<any> {
+        return this.http.get(this.apiURL + '&launch_success=' + launchFlag + '&land_success=' + landFlag, this.options);
+    }
+
     public allFilter(launchFlag, landFlag, year): Observable<any> {
-        return this.http.get(this.apiURL + '&launch_success='+ launchFlag + '&land_success=' + landFlag + '&launch_year=' + year, this.options);
+        return this.http.get(this.apiURL + '&launch_success=' + launchFlag + '&land_success=' + landFlag + '&launch_year=' + year, this.options);
     }
 }
