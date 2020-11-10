@@ -69,37 +69,50 @@ export class AppComponent {
     this.loadAll();
   }
 
-  ngAfterViewInit() { }
-
-
+  /**
+   * @method loadAll loads all the data on init
+   */
   loadAll() {
     this.gs.loadData().subscribe(res => {
       this.data = res;
     });
   }
 
+  /**
+   * @method applyYearFilter when year is selected from Launch year filter
+   * @param year passes current year value
+   * @param index current selected year
+   */
   applyYearFilter(year, index) {
     this.selectedIndex = index;
-    this.yearLaunch = year; 
+    this.yearLaunch = year;
     this.gs.allFilter(this.landFlag, this.launchFlag, year).subscribe(res => {
       this.data = [];
       this.data = res;
     });
   }
 
-  landing(arg) {
-    this.toggleLanding = !this.toggleLanding;
-    this.landFlag = arg;
-    this.gs.landFilter(this.landFlag).subscribe(res => {
+  /**
+   * @method launch when Successful Launch is selected as true/false
+   * @param arg Successful Launch true/false
+   */
+  launch(arg) {
+    this.toggleLaunch = !this.toggleLaunch;
+    this.launchFlag = arg;
+    this.gs.launchSuccessFilter(this.launchFlag).subscribe(res => {
       this.data = [];
       this.data = res;
     });
   }
 
-  launch(arg) {
-    this.toggleLaunch = !this.toggleLaunch;
-    this.launchFlag = arg;
-    this.gs.launchSuccessFilter(this.launchFlag).subscribe(res => {
+  /**
+   * @method landing when Successful Landing is selected as true/false
+   * @param arg Successful Landing true/false
+   */
+  landing(arg) {
+    this.toggleLanding = !this.toggleLanding;
+    this.landFlag = arg;
+    this.gs.landFilter(this.landFlag).subscribe(res => {
       this.data = [];
       this.data = res;
     });
