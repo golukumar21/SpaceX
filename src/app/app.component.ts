@@ -103,7 +103,7 @@ export class AppComponent {
   applyYearFilter(year, index) {
     this.selectedIndex = index;
     this.yearLaunch = year;
-    this.gs.allFilter(this.landFlag, this.launchFlag, year).subscribe(res => {
+    this.gs.allFilter(this.launchFlag, this.landFlag, year).subscribe(res => {
       this.yearApplied = true;
       this.data = [];
       this.data = res;
@@ -119,7 +119,7 @@ export class AppComponent {
     this.launchFlag = arg;
     this.selectedLaunch = index;
     if (this.yearApplied) {
-      this.gs.allFilter(this.landFlag, this.launchFlag, this.yearLaunch).subscribe(res => {
+      this.gs.allFilter(this.launchFlag, this.landFlag, this.yearLaunch).subscribe(res => {
         this.yearApplied = true;
         this.data = [];
         this.data = res;
@@ -141,7 +141,7 @@ export class AppComponent {
     this.landFlag = arg;
     this.selectedLanding = index;
     if (this.yearApplied) {
-      this.gs.allFilter(this.landFlag, this.launchFlag, this.yearLaunch).subscribe(res => {
+      this.gs.allFilter(this.launchFlag, this.landFlag, this.yearLaunch).subscribe(res => {
         this.yearApplied = true;
         this.data = [];
         this.data = res;
